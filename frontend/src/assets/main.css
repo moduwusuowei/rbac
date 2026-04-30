@@ -1,0 +1,87 @@
+/* 全局样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 
+              'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  color: #303133;
+  background: #f5f7fa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Element Plus 覆盖样式 */
+.el-button--primary {
+  background: #409EFF;
+  border-color: #409EFF;
+}
+
+.el-button--primary:hover {
+  background: #66b1ff;
+  border-color: #66b1ff;
+}
+
+/* 卡片样式 */
+.el-card {
+  border-radius: 4px;
+}
+
+.el-card__header {
+  border-bottom: 1px solid #ebeef5;
+  font-weight: bold;
+}
+
+/* 表格样式 */
+.el-table {
+  width: 100%;
+}
+
+.el-table th {
+  background: #fafafa;
+}
+
+/* 表单样式 */
+.el-form-item__label {
+  font-weight: 500;
+}
+
+/* 页面标题 */
+.page-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #303133;
+}
+
+/* 页面工具栏 */
+.page-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+/* 表格操作按钮 */
+.table-action {
+  margin-right: 8px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .el-aside {
+    position: absolute;
+    z-index: 1000;
+  }
+  
+  .page-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+}

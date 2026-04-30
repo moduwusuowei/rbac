@@ -1,0 +1,17 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "include": ["src/**/*.{ts,tsx,js,jsx,vue}"],
+  "exclude": [
+    "src/**/*.test.*",
+    "src/**/*.spec.*",
+    "src/test/**",
+    "src/**/*.d.ts",
+    "tests/**",
+    "test-results/**",
+    "node_modules/**"
+  ],
+  "reporter": ["html", "text-summary", "lcov"],
+  "extension": [".js", ".ts", ".vue"],
+  "produceSourceMap": true
+}

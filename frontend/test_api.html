@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>API测试</h1>
+    <button onclick="testLogin()">测试登录</button>
+    <button onclick="testGetTasks()">测试获取任务列表</button>
+    <div id="result"></div>
+
+    <script>
+        let token = '';
+
+        function showResult(message) {
+            document.getElementById('result').innerHTML += '<p>' + message + '</p>';
+        }
+
+        async function testLogin() {
+            showResult('开始测试登录...');
+            try {
+                const response = await axios.post('http://localhost:8000/api/v1/auth/login', {
+                    username: 'admin',
+                    password: 'admin123'
+                });
+                token = response.data.access_token;
+                showResult('登录成功，token: ' + token);
+                showResult('token过期时间: 24小时');
+            } catch (error) {
+                showResult('登录失败: ' + error.message);
+            }
+        }
+
+        async function testGetTasks() {
+            if (!token) {
+                showResult('请先登录');
+                return;
+            }
+            showResult('开始测试获取任务列表...');
+            try {
+                const response = await axios.get('http://localhost:8000/api/v1/tasks', {
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    params: {
+                        type: 'all'
+                    }
+                });
+                showResult('获取任务列表成功，任务数量: ' + response.data.length);
+                showResult('任务列表: ' + JSON.stringify(response.data));
+            } catch (error) {
+                showResult('获取任务列表失败: ' + error.message);
+                if (error.response) {
+                    showResult('状态码: ' + error.response.status);
+                    showResult('错误信息: ' + JSON.stringify(error.response.data));
+                }
+            }
+        }
+    </script>
+</body>
+</html>
